@@ -1,0 +1,26 @@
+2019年了，作为一个严肃的程序员，即使没有用过函数式编程，你一定听说过。所以到底怎么判断怎样的代码才符合纯函数式编程的基本原则（英文为functional programming，以下简称FP）？要回答这个问题，首先你需要理解FP的基本原则是什么。这个基本原则就是“引用透明性”（英文为referential transparency，以下简称RT）。
+
+简单来说，判断代码是否符合RT，你只需要判断表达式的左右部分在你的程序中可以相互替代。比如 val date = "4/20/2019" 是符合RT的，因为显然在程序中无论你是用date还是'4/20/2019'，程序不会发生变化。
+
+再来看以下这个例子（代码是scala code），
+```
+val currentTime: Long = System.currentTimeMillis()
+```
+
+currentTime与System.currentTimeMillis无法相互替代。currentTime的值是固定的，而System.currentTimeMillis()每次调用都会产生不同的值，显然跟currentTime无法相互替代。
+```
+@ val currentTime: Long = System.currentTimeMillis()
+currentTime: Long = 1555801262530L
+
+@ currentTime
+res1: Long = 1555801262530L
+
+@ System.currentTimeMillis()
+res2: Long = 1555801279703L
+
+@ System.currentTimeMillis()
+res3: Long = 1555801292627L
+```
+
+
+期待更多FP的post吗，积极点赞，7姐有可能会多码字哦。
